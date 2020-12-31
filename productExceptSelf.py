@@ -14,6 +14,8 @@ class Solution(object):
         for i in range(0, len(nums)):
             out.append(p)
             p = p * nums[i] # 왼쪽부터 곱해서 result에 추가
+            
+            # out : 1 1 2 6
         
         p =1
         
