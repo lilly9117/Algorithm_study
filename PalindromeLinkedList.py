@@ -1,3 +1,6 @@
+        
+import collections
+
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, val=0, next=None):
@@ -24,4 +27,26 @@ class Solution(object):
                 return False
             
         return True
+
+    def isPalindrome(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
         
+        q = collections.deque() # 데크 이용해서 최적화
+        
+        if not head:
+            return True
+        
+        node = head
+        while node is not None:
+            q.append(node.val)
+            node = node.next
+            
+        while len(q) >1:
+            if q.popleft() != q.pop():
+                return False
+            
+        return True
+            
