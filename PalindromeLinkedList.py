@@ -28,7 +28,7 @@ class Solution(object):
             
         return True
 
-    def isPalindrome(self, head):
+    def isPalindrome2(self, head):
         """
         :type head: ListNode
         :rtype: bool
@@ -49,4 +49,29 @@ class Solution(object):
                 return False
             
         return True
+
+    #런너 이용한 풀이 !!
+    def isPalindrome3(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        
+        rev = None
+        slow = fast = head #빠른 런너, 느린런너 초기값 - head
+        
+        while fast and fast.next: # 런너 이동 -> next 존재하지 않을 때까지 이동
+            fast  = fast.next.next # 빠른 런너는 2칸씩 이동
+            rev, rev.next, slow = slow, rev, slow.next #느린 런너는 한칸씩 이동 -> 역순으로 연결 리스트 rev를 생성하는 로직 slow앞에 덧붙임
+            #(앞에 계속 새로운 노드 추가되는 형태)  rev : slow의 역순 연결 리스트
+            
+        if fast: #fast가 아직 None이 아닌경우 slow한칸 더 이동
+            slow = slow.next
+            
+        # 팰린드롬 여부 확인
+        while rev and rev.val == slow.val : # rev하나씩 풀어가면서 비교
+            slow, rev = slow.next, rev.next
+        
+        return not rev  
+        # return not slow 가능
             
